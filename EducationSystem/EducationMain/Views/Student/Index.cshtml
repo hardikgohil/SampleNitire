@@ -1,0 +1,42 @@
+﻿@model EducationInterfaces.IStudentView
+
+@{
+    ViewBag.Title = "Index";
+}
+<style type ="text/css">
+
+.columns: after {content: "."; display:block; height:0; clear: both; visibility:hidden;}
+.columns {height:1%; }
+.columns {display: inline-block;}
+.columns {height:1%; display: block;}
+.columns .column {display: inline; float:left; overflow:hidden;}
+
+</style>
+<h2>MVC is the best !!!</h2>
+
+    @Html.ActionLink("Add new student", "StudentEntry")
+<table> 
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>Date of Birth</th>
+        <th>Faculty</th>
+        <th>Actions</th>
+    </tr>
+    
+    @if(Model.StudentCollection != null){
+
+    foreach (var student in Model.StudentCollection)
+    {
+     <tr>               
+         <td>@student.FastName</td>
+         <td>@student.LastName</td>
+         <td>@student.Gender</td>
+         <td>@student.DateOfBirth</td>
+         <td>@student.Faculty</td> 
+         <td> @Html.ActionLink("Edit", "EditStudent", new { id = student.StudentId })    @Html.ActionLink("Delete", "DeleteStudent", new { id = student.StudentId }) </td>                      
+     </tr>
+    }
+    }
+ </table>
